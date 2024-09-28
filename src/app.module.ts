@@ -1,10 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
+
+import { AppService } from 'src/app.service';
+import { AppController } from 'src/app.controller';
+import { CallerService } from 'src/caller/caller.service';
+import { CallerController } from 'src/caller/caller.controller';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [ConfigModule.forRoot()],
+  controllers: [AppController, CallerController],
+  providers: [AppService, CallerService],
 })
 export class AppModule {}
